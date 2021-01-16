@@ -14,7 +14,7 @@ function createDivsLinear() {
         let div2 = document.createElement('div');  // create a new div element
         div2.setAttribute("id", `linear`+(i+1));          // add id to the new div 
         document.getElementById("linear").appendChild(div2);          // add the newly created element  to the DOM
-        //Linear Color
+        //Linear Colora
         let div3 = document.createElement('div');  // create a new div element
         div3.setAttribute("id", `linearCol`+(i+1));  // add id to the new div 
         document.getElementById("linearCol").appendChild(div3); // add the newly created element  to the DOM
