@@ -1,4 +1,4 @@
-let size = 2500;
+let size = 2500;   //size should be a square number to create square layout
 let merged = [].concat.apply([], createSpiral()); // merges the arrays of createSpiral
 
 function createDivsLinear() {
@@ -43,7 +43,7 @@ function createDivsSpiral() {
 function addClass() {
     let stroke;
     let bgColor;
-    let offset = -2;                        // to offsetts the probalility over time
+    let offset = -1.5;                        // to offsetts the probalility over time
     for (let i = 0; i <= size-1; i++) {       //cycles through all the divs
         let randomNumber = (Math.random() * 3);    //generates random number between 0-2.99
 
@@ -60,58 +60,61 @@ function addClass() {
         }
         //_____________________________________ possible cases
 
-        offset += 0.00125;                       // raises the probalility of empty over time
+        offset += 0.00125;                       // shifts the probalility of empty over time
 
         document.getElementById((`spiralCol`+(i+1))).className ="";  //resets class of to the div it parses
         document.getElementById((`spiralCol`+(i+1))).style.backgroundColor =`${bgColor}`; //adds greyscale background color
-        document.getElementById((`linearCol`+(i+1))).className ="";  //resets class of to the div it parses
-        document.getElementById((`linearCol`+(i+1))).style.backgroundColor =`${bgColor}`;  //adds greyscale background color
-        document.getElementById((`linear`+(i+1))).className ="";  //resets class of to the div it parses
+        document.getElementById((`linearCol`+(i+1))).className ="";  
+        document.getElementById((`linearCol`+(i+1))).style.backgroundColor =`${bgColor}`;  
+        document.getElementById((`linear`+(i+1))).className ="";  
         document.getElementById((`linear`+(i+1))).classList.add(`${stroke}`); // adds the generated vertical, horizontal or null stroke
-        document.getElementById((`spiral`+(i+1))).className ="";  //resets class of to the div it parses
-        document.getElementById((`spiral`+(i+1))).classList.add(`${stroke}`); // adds the generated vertical, horizontal or null stroke
+        document.getElementById((`spiral`+(i+1))).className ="";  
+        document.getElementById((`spiral`+(i+1))).classList.add(`${stroke}`);
     }
 }
 
-function createSpiral(size){
-    size = 50;
-    let spiralArray = [];
+function createSpiral(size){     //Creates the spiral raster  
+    size = 50;      //square root of Size
+    let spiralArray = [];  //Empty array for the spiral matrix
     
-    for (let i = 0; i < size; i++) {
+    //Loop which creates "size" number of arrays. 
+    for (let i = 0; i < size; i++) {  
         spiralArray[i] = Array(size)
     }
 
+    //Coordinate counters for the XY matrix
     let topEdge = 0;
     let bottomEdge = (size-1);
     let leftEdge = 0;
     let rightEdge = (size-1);
-    let counter = 1;
+    let counter = 1;    //main counter to count up to size
     let direction = 'LEFT';
-    let x = 0;
-    let y = 0;
+    let x = 0;      //x coordinate counter of matrix array
+    let y = 0;      //y coordinate counter of matrix array
 
-    while (topEdge <= bottomEdge && leftEdge <= rightEdge) {
-        if (direction === "LEFT" && x <= rightEdge) {
-            spiralArray[y][x++] = counter++;
-        } else if (direction === "LEFT" && x > rightEdge) {
-            direction = "DOWN";
+    //Coordinate movement cases
+    while (topEdge <= bottomEdge && leftEdge <= rightEdge) {    
+        if (direction === "LEFT" && x <= rightEdge) {                    
+            spiralArray[y][x++] = counter++;                 //step left
+        } else if (direction === "LEFT" && x > rightEdge) {  //check edge
+            direction = "DOWN";                               
             x = rightEdge;
             y = ++topEdge;
         } else if (direction === 'DOWN' && y <= bottomEdge) {
-            spiralArray[y++][x] = counter++;
-        } else if (direction === 'DOWN' && y > bottomEdge) {
+            spiralArray[y++][x] = counter++;                 //step down
+        } else if (direction === 'DOWN' && y > bottomEdge) { //check edge   
             direction = 'RIGHT';
             x = --rightEdge;
             y = bottomEdge;
         } else if (direction === 'RIGHT' && x >= leftEdge) {
-            spiralArray[y][x--] = counter++;
-        } else if (direction === 'RIGHT' && x < leftEdge) {
+            spiralArray[y][x--] = counter++;                 //step right
+        } else if (direction === 'RIGHT' && x < leftEdge) {  //check edge
             direction = 'UP';
             x = leftEdge;
             y = --bottomEdge;
         }  else if (direction === 'UP' && y >= topEdge) {
-            spiralArray[y--][x] = counter++;
-        } else if (direction === 'UP' && y < topEdge) {
+            spiralArray[y--][x] = counter++;                 //step left
+        } else if (direction === 'UP' && y < topEdge) {      //check edge
             direction = 'LEFT';
             x = ++leftEdge;
             y = topEdge;
