@@ -7,6 +7,7 @@ let mergedupperLeft = [].concat.apply([], createUpperLeftArray()); // merges the
 let mergedSquare = [].concat.apply([], createSquareArray());
 
 
+
 //Arrays, fill directions and fill modes
 let allArray = [mergedLinear, mergedSpiral, mergedupperLeft, mergedSquare];
 let rasterTypes = [`linear`, `spiral`,`upperLeft`,`square`];
