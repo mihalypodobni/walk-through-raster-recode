@@ -46,9 +46,9 @@ div {
     }
     
     section {
-        display: block;
+        float: left;
         height: 95vw;
         width: 95vw;
-        margin-bottom: 3vw;    
+        margin-bottom: 5vw;    
     }
 }
